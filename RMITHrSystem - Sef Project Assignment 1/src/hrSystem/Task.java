@@ -1,19 +1,28 @@
 package hrSystem;
 
 public class Task {
-	Course course;
+	//Course course;
+	String course;
 	TimeApprover assignedApprover;
 	CasualStaff assignedStaffMember;
 	String taskName;
-	String time;
+	String dateTime;
 	Double payRate;
 	boolean verified = false;
 	boolean completed = false;
 	
-	public Course getCourse() {
+	//Trialing course as a string
+	//Can compare Course Name to Course Task Name to search/sort in database 
+	/*public Course getCourse() {
 		return course;
 	}
 	public void setCourse(Course course) {
+		this.course = course;
+	}*/
+	public String getCourse() {
+		return course;
+	}
+	public void setCourse(String course) {
 		this.course = course;
 	}
 	public TimeApprover getAssignedApprover() {
@@ -28,11 +37,11 @@ public class Task {
 	public void setAssignedStaffMember(CasualStaff assignedStaffMember) {
 		this.assignedStaffMember = assignedStaffMember;
 	}
-	public String getTime() {
-		return time;
+	public String getDateTime() {
+		return dateTime;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
 	}
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
