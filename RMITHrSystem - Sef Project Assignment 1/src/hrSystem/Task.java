@@ -7,7 +7,7 @@ public class Task {
 	CasualStaff assignedStaffMember;
 	String taskName;
 	String dateTime;
-	Double payRate;
+	double payRate;
 	boolean verified = false;
 	boolean completed = false;
 	
@@ -49,7 +49,7 @@ public class Task {
 	public String getTaskName() {
 		return taskName;
 	}
-	public Double getPayRate() {
+	public double getPayRate() {
 		return payRate;
 	}
 	public void setPayRate(double payRate) {
