@@ -2,10 +2,12 @@ package hrSystem;
 import java.util.Scanner;
 
 public class Login {
+
   	public static void main(String[] args) {
       // bit of an idea
 	    Scanner input = new Scanner(System.in);
-
+      Admin testAdmin = new Admin();
+		  testAdmin.createTask();
 	    String staffusername;
 	    String staffpassword;
 
