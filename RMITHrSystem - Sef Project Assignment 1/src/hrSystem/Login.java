@@ -21,5 +21,5 @@ public class Login {
 	    //checks username and password
 	    if(staffusername.equals(staffusername) && staffpassword.equals(staffpassword)) 
 	        System.out.println("You are logged in");
-
+  	}
 }
