@@ -1,5 +1,9 @@
 package hrSystem;
 
+import java.util.InputMismatchException;
+
+import java.util.Scanner;
+
 public class Task {
 	Course course;
 	TimeApprover assignedApprover;
@@ -67,5 +71,40 @@ public class Task {
 		this.completed = completed;
 	} 
 	
+	public void createTask() {
+		Scanner scan = new Scanner(System.in);
+		double d = 0;
+		boolean doubleEntered = false;
+		String i;
+		System.out.print("Please enter the task's name: ");
+		i = scan.nextLine();
+		setTaskName(i);
+		//This function is to be added soon
+		//System.out.print("Please enter the task's course: ");
+		//i = scan.nextLine();
+		//setCourse(NULL);
+		System.out.print("Please enter the task's date and time: ");
+		i = scan.nextLine();
+		setDateTime(i);
+		do {
+			try {
+				System.out.print("Please enter the Task's pay rate: ");
+				d = scan.nextDouble();
+				doubleEntered = true;
+			}catch (InputMismatchException e){
+				System.out.println("Please enter a decimal number i.e '21.45': ");
+				doubleEntered = false;
+			}
+			scan.nextLine();
+		}while (doubleEntered == false);
+		
+		setPayRate(d);
+		
+		System.out.print("Task: " + getTaskName() + 
+				//This function is to be added soon
+				//"\nCourse: " + getCourse() + 
+				"\nDate and Time: " + getDateTime() + 
+				"\nPay Rate: " + getPayRate());
+	}
 	
 }
