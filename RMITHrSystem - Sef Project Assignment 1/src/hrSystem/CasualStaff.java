@@ -1,6 +1,6 @@
 package hrSystem;
 
-public class CasualStaff extends Abstract {
+public class CasualStaff extends User {
 	private String phoneNumber;
 	
 	public String getPhoneNumber() {

@@ -3,19 +3,26 @@ package hrSystem;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Admin extends CourseCoordinator {
+public class Admin extends User {
 
 	Scanner scan = new Scanner(System.in);
-	Task tasks = new Task();
-	int numTasks = 0;
-	String i;
+	//Task tasks = new Task();
+	//int numTasks = 0;
+	String id;
 	double d;
 	boolean doubleEntered = false;
 	
-	
+
+	public Admin(String id) {
+		this.setRmitId(id);
+	}
 	
 
-	public void createTask() {
+
+
+
+
+	/*public void createTask() {
 		System.out.print("Please enter the task's name: ");
 		i = scan.nextLine();
 		tasks.setTaskName(i);
@@ -43,5 +50,5 @@ public class Admin extends CourseCoordinator {
 				"\nCourse: " + tasks.getCourse() + 
 				"\nDate and Time: " + tasks.getDateTime() + 
 				"\nPay Rate: " + tasks.getPayRate());
-	}
+	}*/
 }

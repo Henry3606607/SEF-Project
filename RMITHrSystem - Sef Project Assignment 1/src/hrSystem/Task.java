@@ -1,28 +1,27 @@
 package hrSystem;
 
 public class Task {
-	//Course course;
-	String course;
+	Course course;
 	TimeApprover assignedApprover;
 	CasualStaff assignedStaffMember;
 	String taskName;
 	String dateTime;
 	double payRate;
-	boolean verified = false;
-	boolean completed = false;
+	boolean verified;
+	boolean completed;
 	
-	//Trialing course as a string
-	//Can compare Course Name to Course Task Name to search/sort in database 
-	/*public Course getCourse() {
+	public Task(Course course, TimeApprover assignedApprover, CasualStaff assignedStaffMember, String taskName,
+			String dateTime, double payRate) {
+		this.course = course;
+		this.assignedApprover = assignedApprover;
+		this.assignedStaffMember = assignedStaffMember;
+		this.taskName = taskName;
+	}
+	
+	public Course getCourse() {
 		return course;
 	}
 	public void setCourse(Course course) {
-		this.course = course;
-	}*/
-	public String getCourse() {
-		return course;
-	}
-	public void setCourse(String course) {
 		this.course = course;
 	}
 	public TimeApprover getAssignedApprover() {

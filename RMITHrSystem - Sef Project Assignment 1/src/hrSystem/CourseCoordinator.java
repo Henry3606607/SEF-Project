@@ -1,6 +1,6 @@
 package hrSystem;
 
-public class CourseCoordinator extends Abstract {
+public class CourseCoordinator extends User {
 	
 	Course[] courses = new Course[5];
 	

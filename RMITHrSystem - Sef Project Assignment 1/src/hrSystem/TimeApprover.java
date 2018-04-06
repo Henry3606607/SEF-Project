@@ -1,5 +1,5 @@
 package hrSystem;
 
-public class TimeApprover extends Abstract {
+public class TimeApprover extends User {
 
 }

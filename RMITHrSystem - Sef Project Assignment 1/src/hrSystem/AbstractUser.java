@@ -1,6 +1,6 @@
 package hrSystem;
 
-public abstract class Abstract {
+public abstract class AbstractUser {
 	private String rmitId;
 	private String firstName;
 	private String lastName;
