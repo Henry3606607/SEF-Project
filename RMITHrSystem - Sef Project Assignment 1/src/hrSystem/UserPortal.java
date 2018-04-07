@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class UserPortal extends Login{
 	
 	public static void mainMenu(User user){
+
 		Scanner scan = new Scanner(System.in);
 		int userCommand;
 		System.out.println("Hello "+user.getFirstName());
@@ -15,6 +16,8 @@ public class UserPortal extends Login{
 		userCommand = scan.nextInt();
 		if(userCommand == 1) {
 			//run create task function
+			Task task = new Task(null, null, null, "empty", "empty", 0);
+			task.createTask();
 		}
 	}
 }

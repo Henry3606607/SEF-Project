@@ -53,6 +53,7 @@ public static boolean searchForUser(String id, String pWord) {
 		    if(searchForUser(staffId, staffPassword)) {
 		    	System.out.println("You are logged in as user: "+ user.getRmitId());
 		    	UserPortal.mainMenu(user);
+		    	loggedIn = true;
 		    }
 		    else {
 		    	System.out.println("Log in failed, try again \n");
