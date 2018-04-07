@@ -43,7 +43,7 @@ public static boolean searchForUser(String id, String pWord) {
 	    login();
   	}
   	
-  	public static void login() {
+  	private static void login() {
   		Scanner input = new Scanner(System.in);
 		String staffId;
 		String staffPassword;
