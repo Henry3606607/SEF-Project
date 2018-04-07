@@ -40,7 +40,11 @@ public static boolean searchForUser(String id, String pWord) {
   	}
 
   	public static void main(String[] args) {
-	    Scanner input = new Scanner(System.in);
+	    login();
+  	}
+  	
+  	public static void login() {
+  		Scanner input = new Scanner(System.in);
 		String staffId;
 		String staffPassword;
 	    boolean loggedIn = false;
@@ -59,7 +63,6 @@ public static boolean searchForUser(String id, String pWord) {
 		    	System.out.println("Log in failed, try again \n");
 		    }
 	    }
-	    
 	    
   	}
   	
