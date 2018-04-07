@@ -10,9 +10,9 @@ public class Task {
 	CasualStaff assignedStaffMember;
 	String taskName;
 	String dateTime;
-	double payRate;
-	boolean verified;
-	boolean completed;
+	public double payRate;
+	public boolean verified;
+	public boolean completed;
 	
 	public Task(Course course, TimeApprover assignedApprover, CasualStaff assignedStaffMember, String taskName,
 			String dateTime, double payRate) {
