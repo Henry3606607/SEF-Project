@@ -4,7 +4,15 @@ public abstract class AbstractUser {
 	private String rmitId;
 	private String firstName;
 	private String lastName;
+	private int userID;
 	
+	
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 	public String getRmitId() {
 		return rmitId;
 	}

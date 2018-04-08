@@ -10,6 +10,25 @@ public class Login {
 		private static String token = "";
 		private static String[] line;
 	    private static User user;
+	    
+public static boolean findUserType(String userType, String uName, int userID) {
+	if(userType.equals("Admin")) {
+		user = new Admin(uName, userID);
+	}
+	else if(userType.equals("CourseCoordinator")) {
+		user = new CourseCoordinator(uName, userID);
+	}
+	else if(userType.equals("TimeApprover")) {
+		user = new TimeApprover(uName, userID);
+	}
+	else if(userType.equals("CasualStaff")) {
+		user = new CasualStaff(uName, userID);
+	}
+	else {
+		return false;
+	}
+	return true;
+}
 		
 public static boolean searchForUser(String id, String pWord) {
   		
@@ -20,10 +39,10 @@ public static boolean searchForUser(String id, String pWord) {
   			
   			while((token = fileReader.readLine()) != null) {
   				line = token.split(",");
-  				if(line[0].equals(id)) {
-  					if(line[1].equals(pWord)) {
-  						user = new Admin(line[0]);
-  						return true;
+  				if(line[1].equals(id)) {
+  					if(line[2].equals(pWord)) {
+  						return findUserType(line[3], line[1], Integer.parseInt(line[0]));
+  						
   					}
   					System.out.println("Password Incorrect");
   					return false;
@@ -46,7 +65,7 @@ public static boolean searchForUser(String id, String pWord) {
 	    boolean loggedIn = false;
 	    
 	    while(!loggedIn) {
-		    System.out.println("username: ");
+		    System.out.println("Login:\nusername: ");
 		    staffId = input.next();
 		    System.out.println("password: ");
 		    staffPassword = input.next();
@@ -58,7 +77,8 @@ public static boolean searchForUser(String id, String pWord) {
 		    	System.out.println("Log in failed, try again \n");
 		    }
 	    }
-	    
+	    input.close();
+
 	    
   	}
   	
