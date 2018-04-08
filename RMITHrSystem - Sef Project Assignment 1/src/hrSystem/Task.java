@@ -71,40 +71,45 @@ public class Task {
 		this.completed = completed;
 	} 
 	
-	public void createTask() {
-		Scanner scan = new Scanner(System.in);
+	public void createTask(User user) {
+		Scanner taskScanner = new Scanner(System.in);
 		double d = 0;
 		boolean doubleEntered = false;
-		String i;
+		String userInput;
 		System.out.print("Please enter the task's name: ");
-		i = scan.nextLine();
-		setTaskName(i);
+		userInput = taskScanner.nextLine();
+		setTaskName(userInput);
 		//This function is to be added soon
 		//System.out.print("Please enter the task's course: ");
 		//i = scan.nextLine();
 		//setCourse(NULL);
 		System.out.print("Please enter the task's date and time: ");
-		i = scan.nextLine();
-		setDateTime(i);
+		userInput = taskScanner.nextLine();
+		setDateTime(userInput);
 		do {
 			try {
 				System.out.print("Please enter the Task's pay rate: ");
-				d = scan.nextDouble();
+				d = taskScanner.nextDouble();
 				doubleEntered = true;
 			}catch (InputMismatchException e){
 				System.out.println("Please enter a decimal number i.e '21.45': ");
 				doubleEntered = false;
 			}
-			scan.nextLine();
+			taskScanner.nextLine();
 		}while (doubleEntered == false);
 		
 		setPayRate(d);
 		
-		System.out.print("Task: " + getTaskName() + 
+		System.out.print("Task Created by:" + user.getFirstName() +"\nTask: " + getTaskName() + 
 				//This function is to be added soon
 				//"\nCourse: " + getCourse() + 
 				"\nDate and Time: " + getDateTime() + 
 				"\nPay Rate: " + getPayRate());
+		
+		System.out.println("\nPress anybutton to return to menu");
+		userInput = taskScanner.nextLine();
+		UserPortal.mainMenu(user);
+		
 	}
 	
 }
