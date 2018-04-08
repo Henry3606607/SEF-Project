@@ -8,7 +8,7 @@ public class UserPortal extends Login{
 
 		Scanner scan = new Scanner(System.in);
 		int userCommand;
-
+		//UserPortal is not specific for user type. This will be applied later in development
 		System.out.println("Hello "+user.getFirstName());
 		System.out.println("What would you like to do?");
 		System.out.println("1 : Create a Task?");
