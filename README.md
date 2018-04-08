@@ -1,6 +1,10 @@
 # SEF-Project
+Project Contributions: 
 
-Contributions:
+Individual Contributions:
 Amer (s3661022)
+
 Henry (s3606607)
+Created Skeleton of program
+Login and user portal classes
 Max (s3668063)
