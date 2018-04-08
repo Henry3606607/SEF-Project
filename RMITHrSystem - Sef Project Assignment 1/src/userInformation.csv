@@ -1,5 +1,8 @@
-id,password,type
-s3606607,test,CasualStaff
-e123456,test,Admin
-e567890, test,TimeApprover
-s098765,test,CasualStaff
+userNo,id,password,type
+1,s3606607,test,CasualStaff
+2,e123456,test,Admin
+3,e567890, test,TimeApprover
+4,s098765,test,CasualStaff
+5,e890512,test,CourseCoordinator
+6,e750239,test,CourseCoordinator
+7,e765432,test,CourseCoordinator
