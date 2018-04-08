@@ -13,8 +13,6 @@ public class UserPortal extends Login{
 		System.out.println("What would you like to do?");
 		System.out.println("1 : Create a Task?");
 		System.out.println("3 : Logout");
-		scan.nextInt();
-		userCommand = scan.nextInt();
 		
 		while(user != null) {
 			userCommand = scan.nextInt();
