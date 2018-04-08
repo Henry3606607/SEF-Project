@@ -6,36 +6,36 @@ public class Admin extends User {
 	String Rmitid;
 	int userID;
 
+public Admin(String id, int userID) {
 
-	public Admin(String id, int userID) {
 		this.setRmitId(id);
 		this.setUserID(userID);
-		this.addStaff();
-		this.removeStaff();
+		this.addStaff(Rmitid, id);
+		this.removeStaff(Rmitid, id);
 	}
 	
-    public void removeStaff() 
+    public void removeStaff(String Rmitid, String id) 
     {
     	
-		
+
 	}
 
-	public void addStaff() 
+	public void addStaff(String Rmitid, String id) 
 	{
 		
 	}
 	
-	public void setRmitId()
+	public void setRmitId(String Rmitid, String id)
 	{
 		
 	}
 	
-	public void setUserID()
+	public void setUserID(int userID, String Rmitid)
 	{
 		
 	}
 	
-	public String getId() 
+	public String getId(String Rmitid, int userID) 
 	{
 		return id;
 	}
@@ -75,4 +75,3 @@ public class Admin extends User {
 	
 
 }
-
