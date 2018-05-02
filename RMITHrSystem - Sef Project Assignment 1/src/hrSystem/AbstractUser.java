@@ -6,7 +6,10 @@ public abstract class AbstractUser {
 	private String lastName;
 	private int userID;
 	
-	
+	public void initUserInformation(String firstName, String lastName){
+		setFirstName(firstName);
+		setLastName(lastName);
+	}
 	public int getUserID() {
 		return userID;
 	}

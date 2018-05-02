@@ -11,23 +11,22 @@ public class Login {
 		private static String[] line;
 	    private static User user;
 	    
-public static boolean findUserType(String userType, String uName, int userID) {
+public static User findUserType(String userType, String uName, int userID) {
 	if(userType.equals("Admin")) {
-		user = new Admin(uName, userID);
+		return new Admin(uName, userID);
 	}
 	else if(userType.equals("CourseCoordinator")) {
-		user = new CourseCoordinator(uName, userID);
+		return new CourseCoordinator(uName, userID);
 	}
 	else if(userType.equals("TimeApprover")) {
-		user = new TimeApprover(uName, userID);
+		return new TimeApprover(uName, userID);
 	}
 	else if(userType.equals("CasualStaff")) {
-		user = new CasualStaff(uName, userID);
+		return new CasualStaff(uName, userID);
 	}
 	else {
-		return false;
+		return null;
 	}
-	return true;
 }
 		
 public static boolean searchForUser(String id, String pWord) {
@@ -41,8 +40,14 @@ public static boolean searchForUser(String id, String pWord) {
   				line = token.split(",");
   				if(line[1].equals(id)) {
   					if(line[2].equals(pWord)) {
-  						return findUserType(line[3], line[1], Integer.parseInt(line[0]));
-  						
+  						user = findUserType(line[3], line[1], Integer.parseInt(line[0]));
+  						if(user != null) {
+  							user.initUserInformation(line[4], line[5]);
+  							return true;
+  						}
+  						else {
+  							return false;
+  						}
   					}
   					System.out.println("Password Incorrect");
   					return false;
