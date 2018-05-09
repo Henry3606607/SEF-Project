@@ -11,22 +11,28 @@ public class Login {
 		private static String[] line;
 	    private static User user;
 	    
-public static User findUserType(String userType, String uName, int userID) {
+	    
+public static User findUserType(String userType, String uName, String lName, String rmitID, User user) {
 	if(userType.equals("Admin")) {
-		return new Admin(uName, userID);
+		user = new Admin();
+		user.initUserInformation(rmitID, uName, lName, "admin");
 	}
 	else if(userType.equals("CourseCoordinator")) {
-		return new CourseCoordinator(uName, userID);
+		user = new CourseCoordinator();
+		user.initUserInformation(rmitID, uName, lName, "courseCoordinator");
 	}
 	else if(userType.equals("TimeApprover")) {
-		return new TimeApprover(uName, userID);
+		user = new TimeApprover();
+		user.initUserInformation(rmitID, uName, lName, "timeApprover");
 	}
 	else if(userType.equals("CasualStaff")) {
-		return new CasualStaff(uName, userID);
+		user = new CasualStaff();
+		user.initUserInformation(rmitID, uName, lName, "casualStaff");
 	}
 	else {
 		return null;
 	}
+	return user;
 }
 		
 public static boolean searchForUser(String id, String pWord) {
@@ -40,13 +46,10 @@ public static boolean searchForUser(String id, String pWord) {
   				line = token.split(",");
   				if(line[1].equals(id)) {
   					if(line[2].equals(pWord)) {
-  						user = findUserType(line[3], line[1], Integer.parseInt(line[0]));
-  						if(user != null) {
-  							user.initUserInformation(line[4], line[5]);
+  						user = findUserType(line[3], line[4], line[5], line[1], user);
+  						if(user != null)
+  						{
   							return true;
-  						}
-  						else {
-  							return false;
   						}
   					}
   					System.out.println("Password Incorrect");

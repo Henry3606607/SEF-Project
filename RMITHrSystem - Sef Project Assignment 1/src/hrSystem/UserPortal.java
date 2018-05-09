@@ -13,6 +13,9 @@ public class UserPortal extends Login{
 		System.out.println("What would you like to do?");
 		System.out.println("1 : Create a Task?");
 		System.out.println("3 : Logout");
+		if(user.userType == "admin") {
+			System.out.println("5: Create new User?");
+		}
 		
 		while(user != null) {
 			userCommand = scan.nextInt();
@@ -23,6 +26,11 @@ public class UserPortal extends Login{
 			else if(userCommand == 3) {
 				user = null;
 				System.out.println("Succesfully logged out");
+			}
+			else if(user.userType == "admin" && userCommand == 5) {
+				if(Admin.addStaff()) {
+					
+				}
 			}
 		}
 	}

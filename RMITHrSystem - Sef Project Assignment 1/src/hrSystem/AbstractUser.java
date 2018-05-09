@@ -5,11 +5,22 @@ public abstract class AbstractUser {
 	private String firstName;
 	private String lastName;
 	private int userID;
-	
-	public void initUserInformation(String firstName, String lastName){
+	String userType;
+	public void initUserInformation(String rmitID, String firstName, String lastName, String userType){
+		setRmitId(rmitID);
 		setFirstName(firstName);
 		setLastName(lastName);
+		setUserType(userType);
 	}
+	
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
 	public int getUserID() {
 		return userID;
 	}

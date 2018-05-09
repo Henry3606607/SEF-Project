@@ -6,5 +6,6 @@ public class User extends AbstractUser {
 	TimeApprover typeTimeApprover;
 	CourseCoordinator typeCourseCoordinator;
 	
-	
+	public void setType(User user, String type) {
+	}
 }

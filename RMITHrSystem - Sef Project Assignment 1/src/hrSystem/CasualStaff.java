@@ -5,9 +5,7 @@ public class CasualStaff extends User {
 	private String fName;
 	private String lName;
 	
-	public CasualStaff(String id, int userID) {
-		this.setRmitId(id);
-		this.setUserID(userID);
+	public CasualStaff() {
 	}	
 	public String getPhoneNumber() {
 		return phoneNumber;
