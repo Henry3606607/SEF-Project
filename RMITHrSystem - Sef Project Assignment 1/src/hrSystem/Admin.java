@@ -2,6 +2,8 @@ package hrSystem;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -85,12 +87,52 @@ public Admin() {
 			if(saveUserToFile(userArray)) {
 				
 			}
+			
 		}
 		else {
 			System.out.println("\nUser creation cancelled returning to main menu");
 			return false;
 		}
 		return true;
+	}
+	
+	public static boolean removeStaff() throws FileNotFoundException {
+		Scanner scan = new Scanner(System.in);
+		File file = new File ("userInformation.csv");
+		File tempFile = new File("temp.csv");
+		String chosenId, fileLine;
+		Boolean idFound = false;
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(tempFile));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Please enter the ID of the staff member you wish to remove:");
+		chosenId = scan.nextLine();
+		Scanner scanFile = new Scanner(file);
+		while (scanFile.hasNextLine()) {
+			fileLine = scanFile.nextLine();
+			if (fileLine.contains(chosenId)) {
+				idFound = true;
+			} else {
+				try {
+					writer.write(fileLine);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return false;
+			}
+		}
+		if (idFound == false) {
+			System.out.println("No staff member with the given Id was found");
+		}else if (idFound == true) {
+			tempFile.renameTo(file);
+			return true;
+		}
+		return false;
 	}
 	
 	public static boolean saveUserToFile(String[] userArray) {
