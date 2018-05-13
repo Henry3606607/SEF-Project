@@ -90,6 +90,9 @@ public Admin() {
 		return true;
 	}
 	
+	
+	//Remove staff works but will cause the UserPortal menu method to throw an error due to scanner issues
+	//a fix has not been found for yet so the program will have to be re run again after using removeStaff.
 	public static boolean removeStaff(){
 		String inputFile = "src/userInformation.csv";
 		String tempFile = "src/temp.csv";
