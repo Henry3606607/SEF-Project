@@ -1,5 +1,6 @@
 package hrSystem;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class UserPortal extends Login{
@@ -11,6 +12,7 @@ public class UserPortal extends Login{
 		System.out.println("3 : Logout");
 		if(user.userType == "admin") {
 			System.out.println("5 : Create new User?");
+			System.out.println("6 : Remove User");
 		}
 	}
 	
@@ -33,6 +35,14 @@ public class UserPortal extends Login{
 			else if(user.userType == "admin" && userCommand == 5) {
 				if(Admin.addStaff()) {
 					
+				}
+			}
+			else if(user.userType == "admin" && userCommand == 6) {
+				try {
+					Admin.removeStaff();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 			else {
