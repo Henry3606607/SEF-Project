@@ -1,7 +1,7 @@
 package hrSystem;
 
-import java.util.Scanner;
-
+import java.util.ArrayList;
+import java.util.List;
 /*
 public class AvailableTimes {
 	String[] times = {"Monday", "false","Tueday", "false","Wednesday", "false","Thursday", "false","Friday", "false"};
@@ -14,57 +14,139 @@ public class AvailableTimes {
 		return this.times;
 	}
 }*/
-public class AvailableTimes{
+// the way this works is it requires another class which is an issue. Also, this might not be the best way to do it.
+public class AvailableTimes 
+{
+    private Schedule availability;    
+    private Schedule requestsOff;    
+    private Schedule shiftsTaken;    
+    private String firstName;
+    private String lastName;
+    private int maxHrs;
+    private int minHrs;
+    private int currentHrs;
+    private ArrayList<Object> scheduleHolder = new ArrayList<Object>(3);
 
-public void menu(){
+    public AvailableTimes(String fName,String lName,int maxH,int minH)
+    {
+        firstName = fName;
+        lastName = lName;
+        maxHrs = maxH;
+        minHrs = minH;
 
-    boolean breakOut= false;
-    while(breakOut == false){
-        System.out.println("=====================================");            
-        System.out.println("=====================================");        
-        System.out.println("Please choose the appropriate option: ");
+        availability = new Schedule();
+        shiftsTaken = new Schedule();
+        requestsOff = new Schedule();
 
-        System.out.println("=====================================");
-        System.out.println("=====================================");
-        System.out.println("1) Enter new employee details:");
-        System.out.println("2) Display the employee average age:");
-        System.out.println("3) Display information on specific employee:");
-        System.out.println("4) Display all file accounts:");
-        System.out.println("5) Exit the program:");
-        System.out.println("=====================================");
+        scheduleHolder.add(availability); //0
+        scheduleHolder.add(shiftsTaken);  //1
+        scheduleHolder.add(requestsOff);  //2
+    }
 
-        Scanner in = new Scanner(System.in);    //scanner assigned to 'in'
-        String choice = in.nextLine();  //user input stored in choice
+    public void addShift(int day, TimeSpan shiftTime, int scheduleNumber) throws Exception
+    {
+        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
+        temp.add(day, shiftTime); 
+    }
 
-        switch (choice){
-            case "1": System.out.println("You chose the 'add employee' input");
-                CasualStaff e1= new CasualStaff();
-                e1.addCasualStaff();
-                break;
+    public void removeShift(int day, TimeSpan shiftTime, int scheduleNumber)
+    {
+        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
+        temp.remove(day, shiftTime); 
+    }
 
-            case "2": 
-                System.out.println("You chose the b input");
-                break;
+    public void clearSchedule(int scheduleNumber)
+    {
+        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
+        temp.clear();
+    }
 
-            case "3":   
-                System.out.println("You chose the c input");
-               //searchspecficRMITstaff  
-               break;
+    public boolean doesShiftExist(int day, TimeSpan shiftTime, int scheduleNumber)
+    {
+        Schedule tempSch = (Schedule)scheduleHolder.get(scheduleNumber);
+        ArrayList<Object> list = getDaySchedule(day,scheduleNumber);
+        for (Object obj : list)
+        {
+            TimeSpan span = (TimeSpan) obj;
+            if (tempSch.isShiftWithinShift(shiftTime, span))
+                return true;
+        }
+        return false;
+    }
 
-            case "4":
-                System.out.println("You chose the 'display all' input");
-                //displays whatever you inputted
-                break;
+    public ArrayList<Object> getDaySchedule(int day, int scheduleNumber)
+    {
+        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
+        return temp.getDayList(day);
+    }
 
-            case "5":
-                System.out.println("You chose to Exit.");
-                breakOut= true;
-                break;
+    public void printSchedule()
+    {
+        System.out.println("----------------------------------------------");
+        System.out.println(firstName + " " + lastName);
+        System.out.println("[Availability]");
+        System.out.println("-----------------------");
+        for (int i = 0; i < 5; i++) //should only be from mon-fri
+        {
+            ArrayList<Object> tempList = getDaySchedule(i,0);
+            for (Object obj : tempList)
+            {
+               TimeSpan span = (TimeSpan) obj; 
+               System.out.println("Shift______");
+               System.out.println("Time In : " + span.getTimeIn());
+               System.out.println("Time Out: " + span.getTimeOut());
+            }
+        }
 
-            default:
-                System.out.println("The input is not correct");
-                break;
+        System.out.println("[Shifts Taken]");
+        System.out.println("-----------------------");
+        for (int i = 0; i < 5; i++)
+        {
+            ArrayList<Object> tempList = getDaySchedule(i,1);
+            for (Object obj : tempList)
+            {
+               TimeSpan span = (TimeSpan) obj; 
+               System.out.println("    Shift______");
+               System.out.println("        Time In : " + span.getTimeIn());
+               System.out.println("        Time Out: " + span.getTimeOut());
+            }
         }
     }
-}
+
+// following 3 functions aren't functional yet. 
+    private boolean isOverMaxHrs()
+    {
+        return true;
+    }
+
+    private boolean isOverMinHrs()
+    {
+        return true;
+    }
+
+    public boolean doesShiftConflict(int day, TimeSpan shiftTime)
+    {
+        ArrayList<Object> shiftsOnDay = shiftsTaken.getDayList(day);     
+        return true;
+    }
+    
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public int getMaxHrs()
+    {
+        return maxHrs;
+    }
+
+    public int getMinHrs()
+    {
+        return minHrs;
+    }
 }
