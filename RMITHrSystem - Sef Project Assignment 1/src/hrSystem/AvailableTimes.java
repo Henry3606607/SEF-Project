@@ -15,138 +15,98 @@ public class AvailableTimes {
 	}
 }*/
 // the way this works is it requires another class which is an issue. Also, this might not be the best way to do it.
-public class AvailableTimes 
+public class AvailableTimes{
+	private String DateAllocated;
+	private String fName;
+	private String lName;
+	private String BSB;
+	private int staffNumber;
+	private CasualStaff staff;
+
+public AvailableTimes(){
+	this.fName = "Test";
+	this.lName = "Test";
+	this.DateAllocated = "Monday";
+	this.BSB = "035-305";
+	this.staffNumber = 3661022;
+	this.staff = new CasualStaff();
+}
+public AvailableTimes(String fName, String lName, String DateAllocated, CasualStaff staff)
 {
-    private Schedule availability;    
-    private Schedule requestsOff;    
-    private Schedule shiftsTaken;    
-    private String firstName;
-    private String lastName;
-    private int maxHrs;
-    private int minHrs;
-    private int currentHrs;
-    private ArrayList<Object> scheduleHolder = new ArrayList<Object>(3);
+	this.fName = fName;
+	this.lName = lName;
+	this.DateAllocated = DateAllocated;
+	this.BSB = BSB;
+	this.staffNumber = staffNumber;
+	this.staff = new CasualStaff();
+}
+public AvailableTimes(AvailableTimes at)
+{
+	this.fName = at.fName;
+	this.lName = at.lName;
+	this.DateAllocated = at.DateAllocated;
+	this.BSB = at.BSB;
+	this.staffNumber = at.staffNumber;
+	this.staff = new CasualStaff();
+}
+public String getfName() {
+	return fName;
+}
+public void setfName(String fName) {
+	this.fName = fName;
+}
+public String getlName() {
+	return lName;
+}
+public void setlName(String lName) {
+	this.lName = lName;
+}
+public String getBSB() {
+	return BSB;
+}
+public void setBSB(String bSB) {
+	BSB = bSB;
+}
+public String getDateAllocated() {
+	return DateAllocated;
+}
+public void setDateAllocated(String dateAllocated) {
+	DateAllocated = dateAllocated;
+}
+public CasualStaff getStaff() {
+	return staff;
+}
+public void setStaff(CasualStaff staff) {
+	this.staff = staff;
+}
+public int getStaffNumber() {
+	return staffNumber;
+}
+public void setStaffNumber(int staffNumber) {
+	this.staffNumber = staffNumber;
+}
 
-    public AvailableTimes(String fName,String lName,int maxH,int minH)
-    {
-        firstName = fName;
-        lastName = lName;
-        maxHrs = maxH;
-        minHrs = minH;
 
-        availability = new Schedule();
-        shiftsTaken = new Schedule();
-        requestsOff = new Schedule();
+ 
 
-        scheduleHolder.add(availability); //0
-        scheduleHolder.add(shiftsTaken);  //1
-        scheduleHolder.add(requestsOff);  //2
-    }
+@Override
+public String toString(){
+	return this.staff+ "("+ DateAllocated + ")";
+	
 
-    public void addShift(int day, TimeSpan shiftTime, int scheduleNumber) throws Exception
-    {
-        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
-        temp.add(day, shiftTime); 
-    }
-
-    public void removeShift(int day, TimeSpan shiftTime, int scheduleNumber)
-    {
-        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
-        temp.remove(day, shiftTime); 
-    }
-
-    public void clearSchedule(int scheduleNumber)
-    {
-        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
-        temp.clear();
-    }
-
-    public boolean doesShiftExist(int day, TimeSpan shiftTime, int scheduleNumber)
-    {
-        Schedule tempSch = (Schedule)scheduleHolder.get(scheduleNumber);
-        ArrayList<Object> list = getDaySchedule(day,scheduleNumber);
-        for (Object obj : list)
-        {
-            TimeSpan span = (TimeSpan) obj;
-            if (tempSch.isShiftWithinShift(shiftTime, span))
-                return true;
-        }
-        return false;
-    }
-
-    public ArrayList<Object> getDaySchedule(int day, int scheduleNumber)
-    {
-        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
-        return temp.getDayList(day);
-    }
-
-    public void printSchedule()
-    {
-        System.out.println("----------------------------------------------");
-        System.out.println(firstName + " " + lastName);
-        System.out.println("[Availability]");
-        System.out.println("-----------------------");
-        for (int i = 0; i < 5; i++) //should only be from mon-fri
-        {
-            ArrayList<Object> tempList = getDaySchedule(i,0);
-            for (Object obj : tempList)
-            {
-               TimeSpan span = (TimeSpan) obj; 
-               System.out.println("Shift______");
-               System.out.println("Time In : " + span.getTimeIn());
-               System.out.println("Time Out: " + span.getTimeOut());
-            }
-        }
-
-        System.out.println("[Shifts Taken]");
-        System.out.println("-----------------------");
-        for (int i = 0; i < 5; i++)
-        {
-            ArrayList<Object> tempList = getDaySchedule(i,1);
-            for (Object obj : tempList)
-            {
-               TimeSpan span = (TimeSpan) obj; 
-               System.out.println("    Shift______");
-               System.out.println("        Time In : " + span.getTimeIn());
-               System.out.println("        Time Out: " + span.getTimeOut());
-            }
-        }
-    }
-
-// following 3 functions aren't functional yet. 
-    private boolean isOverMaxHrs()
-    {
-        return true;
-    }
-
-    private boolean isOverMinHrs()
-    {
-        return true;
-    }
-
-    public boolean doesShiftConflict(int day, TimeSpan shiftTime)
-    {
-        ArrayList<Object> shiftsOnDay = shiftsTaken.getDayList(day);     
-        return true;
-    }
-    
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public int getMaxHrs()
-    {
-        return maxHrs;
-    }
-
-    public int getMinHrs()
-    {
-        return minHrs;
-    }
+}
+public void input(){
+	Scanner in = new Scanner(System.in);
+	System.out.println("Enter Employee time allocation: ");
+	System.out.println("Enter First Name of Employee being allocated the time:");
+	this.fName=in.nextLine();
+	System.out.println("Enter Second Name of Employee being allocated the shift: ");
+	this.lName=in.nextLine();
+	this.DateAllocated.length();
+}
+public void print(){
+	System.out.println("Name"+ this.fName+this.lName);
+	System.out.println("Date Allocated"+ this.DateAllocated);
+	
+}
 }
