@@ -134,15 +134,12 @@ public Admin() {
 		} catch (IOException io) {
 			// TODO Auto-generated catch block
 			System.out.println(io);
-			scanner.close();
 			return false;
 		}
 		if (idFound == false) {
 			System.out.println("The id given did not correspond to a staff member.");
-			scanner.close();
 			return false;
 		}
-		scanner.close();
 		return true;
 	}
 	
