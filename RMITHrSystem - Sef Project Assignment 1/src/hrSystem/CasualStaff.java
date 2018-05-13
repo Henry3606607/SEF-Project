@@ -28,7 +28,7 @@ public class CasualStaff extends User {
 	private String fName;
 	private String lName;
 	private String BSB;
-	private String staffNumber;
+	private int staffNumber;
 	private int staffPhone;
 
 
@@ -56,7 +56,7 @@ public class CasualStaff extends User {
     }
 
 
-    public String getStaffNum(){
+    public int getStaffNum(){
         return staffNumber;
     }
 
