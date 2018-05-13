@@ -21,12 +21,6 @@ public Admin() {
 	
 		
 	}
-	
-    public void removeStaff(String Rmitid, String id) 
-    {
-    	
-
-	}
 
 	public static boolean addStaff() 
 	{
@@ -96,43 +90,57 @@ public Admin() {
 		return true;
 	}
 	
-	public static boolean removeStaff() throws FileNotFoundException {
-		Scanner scan = new Scanner(System.in);
-		File file = new File ("userInformation.csv");
-		File tempFile = new File("temp.csv");
-		String chosenId, fileLine;
+	public static boolean removeStaff(){
+		String inputFile = "src/userInformation.csv";
+		String tempFile = "src/temp.csv";
+		String selectedID, currLine;
 		Boolean idFound = false;
-		BufferedWriter writer = null;
+		BufferedReader br = null;
+		BufferedWriter bw = null;
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Enter the ID of the staff you wish to remove:");
+		selectedID = scanner.nextLine();
+		
 		try {
-			writer = new BufferedWriter(new FileWriter(tempFile));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Please enter the ID of the staff member you wish to remove:");
-		chosenId = scan.nextLine();
-		Scanner scanFile = new Scanner(file);
-		while (scanFile.hasNextLine()) {
-			fileLine = scanFile.nextLine();
-			if (fileLine.contains(chosenId)) {
-				idFound = true;
-			} else {
-				try {
-					writer.write(fileLine);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			br = new BufferedReader(new FileReader(inputFile));
+			bw = new BufferedWriter(new FileWriter(tempFile));
+			//currLine = br.readLine();
+			
+			while ((currLine = br.readLine()) != null) {
+				if (currLine.contains(selectedID)) {
+					idFound = true;
+				} else {
+					bw.write(currLine);
+					bw.write("\n");
 				}
-				return false;
 			}
+			br.close();
+			bw.close();
+			BufferedReader fileRead = new BufferedReader(new FileReader(tempFile));
+			BufferedWriter fileWrite = new BufferedWriter(new FileWriter(inputFile));
+			fileWrite.write("");
+			while ((currLine = fileRead.readLine()) != null) {
+				fileWrite.write(currLine);
+				fileWrite.write("\n");
+			}
+
+			fileRead.close();
+			fileWrite.close();
+			
+		} catch (IOException io) {
+			// TODO Auto-generated catch block
+			System.out.println(io);
+			scanner.close();
+			return false;
 		}
 		if (idFound == false) {
-			System.out.println("No staff member with the given Id was found");
-		}else if (idFound == true) {
-			tempFile.renameTo(file);
-			return true;
+			System.out.println("The id given did not correspond to a staff member.");
+			scanner.close();
+			return false;
 		}
-		return false;
+		scanner.close();
+		return true;
 	}
 	
 	public static boolean saveUserToFile(String[] userArray) {

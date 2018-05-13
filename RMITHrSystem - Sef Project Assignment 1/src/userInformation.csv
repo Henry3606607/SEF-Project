@@ -6,4 +6,3 @@ userNo,id,password,type,fname,lname
 5,e890512,test,CourseCoordinator,Ethan,Donovan
 6,e750239,test,CourseCoordinator,Bob,Builder
 7,e765432,test,CourseCoordinator,Tim,Mcgraw
-8,e9087772,test,Admin,Homer,Simpson
