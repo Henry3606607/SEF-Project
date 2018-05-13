@@ -1,15 +1,24 @@
 package hrSystem;
 
+import java.io.BufferedReader;
+
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
+
 public class Task {
+	private static BufferedReader fileReader =  null;
 	Course course;
 	TimeApprover assignedApprover;
 	CasualStaff assignedStaffMember;
 	String taskName;
-	String dateTime;
+	String date;
+	String time;
 	public double payRate;
 	public boolean verified;
 	public boolean completed;
@@ -22,6 +31,17 @@ public class Task {
 		this.taskName = taskName;
 	}
 	
+	
+	public String getTime() {
+		return time;
+	}
+
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+
 	public Course getCourse() {
 		return course;
 	}
@@ -40,11 +60,11 @@ public class Task {
 	public void setAssignedStaffMember(CasualStaff assignedStaffMember) {
 		this.assignedStaffMember = assignedStaffMember;
 	}
-	public String getDateTime() {
-		return dateTime;
+	public String getDate() {
+		return date;
 	}
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
@@ -71,6 +91,48 @@ public class Task {
 		this.completed = completed;
 	} 
 	
+	public boolean writeTaskToFile() {
+		String line;
+		String lastLine = null;
+		String tokenized[];
+		int currIndex;
+		String content;
+		
+		FileWriter fw;
+		try {
+			fw = new FileWriter("src/tasks.csv", true);
+		} catch (IOException e) {
+			System.out.println("Error reading file");
+			return false;
+		}
+		
+		BufferedWriter bw = new BufferedWriter(fw);
+		try {
+			bw.newLine();
+			bw.write(taskName +",");
+			bw.write(Double.toString(payRate)+",");
+			bw.write(date+",");
+			bw.write(time +",");
+			if(completed) {
+				bw.write("completed");
+			}
+			else {
+				bw.write("notCompleted");
+			}
+			bw.close();
+		} catch (IOException e) {
+			System.out.println("Error writing to file");
+			return false;
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
 	public void createTask(User user) {
 		Scanner taskScanner = new Scanner(System.in);
 		double d = 0;
@@ -83,9 +145,11 @@ public class Task {
 		//System.out.print("Please enter the task's course: ");
 		//i = scan.nextLine();
 		//setCourse(NULL);
-		System.out.print("Please enter the task's date and time: ");
-		userInput = taskScanner.nextLine();
-		setDateTime(userInput);
+		System.out.print("Please enter the task's date (Monday, Tuesday etc.): ");
+		
+		setDate(taskScanner.nextLine());
+		System.out.println("Please enter tasks time (830AM, 400PM etc.):");
+		setTime(taskScanner.nextLine());
 		do {
 			try {
 				System.out.print("Please enter the Task's pay rate: ");
@@ -99,11 +163,12 @@ public class Task {
 		}while (doubleEntered == false);
 		
 		setPayRate(d);
-		
+		writeTaskToFile();
 		System.out.print("Task Created by:" + user.getFirstName() +"\nTask: " + getTaskName() + 
 				//This function is to be added soon
 				//"\nCourse: " + getCourse() + 
-				"\nDate and Time: " + getDateTime() + 
+				"\nDate: " + getDate() + 
+				"\nTime: " + getTime() +
 				"\nPay Rate: " + getPayRate());
 		
 		System.out.println("\nPress anybutton to return to menu");
