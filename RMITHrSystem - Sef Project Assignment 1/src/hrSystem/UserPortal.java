@@ -32,7 +32,7 @@ public class UserPortal extends Login{
 
 
 			if(userCommand.equals("1")) {
-				Task task = new Task(null, null, null, "empty", "empty", 0);
+				Task task = new Task(null, null, null, "empty", "empty", "empty", 0);
 				task.createTask(user);
 			}
 			else if(userCommand.equals("3")) {

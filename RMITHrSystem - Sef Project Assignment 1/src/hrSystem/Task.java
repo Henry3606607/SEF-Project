@@ -24,11 +24,14 @@ public class Task {
 	public boolean completed;
 	
 	public Task(Course course, TimeApprover assignedApprover, CasualStaff assignedStaffMember, String taskName,
-			String dateTime, double payRate) {
+			String date, String time, double payRate) {
 		this.course = course;
 		this.assignedApprover = assignedApprover;
 		this.assignedStaffMember = assignedStaffMember;
 		this.taskName = taskName;
+		this.date = date;
+		this.time = time;
+		this.payRate = payRate;
 	}
 	
 	

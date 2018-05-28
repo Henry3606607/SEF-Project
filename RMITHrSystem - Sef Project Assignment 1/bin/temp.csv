@@ -5,6 +5,3 @@ userNo,id,password,type,fname,lname
 4,s098765,test,CasualStaff,Alec,Baldwin
 5,e890512,test,CourseCoordinator,Ethan,Donovan
 6,e750239,test,CourseCoordinator,Bob,Builder
-7,e765432,test,CourseCoordinator,Tim,Mcgraw
-8,s8593920,test,Admin,Thomas,Jefferson
-9,e9403392,test,CasualStaff,James,ALmost

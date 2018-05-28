@@ -2,4 +2,3 @@ name,payrate,date,time,status
 SEF Tutorial,20.0,Monday,830Am,notCompleted
 ITP Tutorial,20.0,Thursday,400PM,notCompleted
 APT Tutorial,20.0,Wednesday,500PM,completed
-SEF Tutorial,15.2,Monday,430AM,notCompleted
