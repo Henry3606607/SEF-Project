@@ -2,6 +2,7 @@ package hrSystem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 /*
 public class AvailableTimes {
 	String[] times = {"Monday", "false","Tueday", "false","Wednesday", "false","Thursday", "false","Friday", "false"};
