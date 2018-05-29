@@ -1,0 +1,46 @@
+package hrSystem;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class CasualStaffTest {
+
+		String fName;
+		String lName;
+		String staffNumber;
+		
+	
+	@Before
+	public void setUp() throws Exception {
+	    System.out.println("Executing a new test");
+		fName = "James";
+		lName = "May";
+		staffNumber = "3661022";
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	    System.out.println("Execution of JUNIT test file done");
+
+	}
+
+	
+
+	@After
+	public void tearDown() throws Exception {
+	    System.out.println("Execution done");
+
+	}
+
+	@Test
+	public void test() throws Exception {
+		setUp();
+		assertEquals(fName, lName);
+		}
+
+}
